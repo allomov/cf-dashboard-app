@@ -17,6 +17,11 @@ gem 'spring',        group: :development
 gem 'dashing-rails'
 gem 'puma'
 
+gem 'cfoundry'
+gem 'cf-uaac'
+gem 'settingslogic'
+
+
 # gem 'bcrypt', '~> 3.1.7'
 # gem 'debugger', group: [:development, :test]
 
