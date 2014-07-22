@@ -1,0 +1,15 @@
+---
+applications:
+  - name: dashing
+    memory: 512M
+    instances: 1
+    env:
+      CF_API: <cf-api>
+      CF_USER: <cf-user>
+      CF_PASSWORD: <cf-password>
+      CF_ORGANIZATION: <organization-name>
+      CF_SPACE: <space-name>
+      CF_APPLICATION: <application-name>
+      REDIS_HOST: <redis-host>
+      REDIS_PORT: 6379
+      SECRET_KEY_BASE: very-secret-production-key

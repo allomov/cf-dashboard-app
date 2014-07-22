@@ -1,0 +1,8 @@
+---
+api: <url to CF API>
+username: <CF user>
+password: <password>
+organization: <organization>
+space: <space name>
+application: <application name>
+profile: true  # output cfoundry requests info
