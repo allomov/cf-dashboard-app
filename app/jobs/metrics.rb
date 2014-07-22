@@ -19,8 +19,8 @@ Dashing.scheduler.every '1s', allow_overlapping: false do
     mem_usage = usage.map { |u| u[:mem] }
     cpu_usage = usage.map { |u| u[:cpu] }
     
-    mem_usage_average = (mem_usage.sum / mem_usage.count) / 1048576   # mb
-    cpu_usage_average = ((cpu_usage.sum / cpu_usage.count) * 100).round(3)       # persents
+    mem_usage_average = (mem_usage.sum / mem_usage.count) / 1048576        # mb
+    cpu_usage_average = ((cpu_usage.sum / cpu_usage.count) * 100).round(3) # persents
     
     time = time + 1
 
