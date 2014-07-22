@@ -31,6 +31,4 @@ Dashing.scheduler.every '1s', allow_overlapping: false do
   Dashing.send_event('cpu-average', points: cpu_usage_history, displayValue: "#{cpu_usage_average}%")
   Dashing.send_event('mem-average', points: mem_usage_history, displayValue: "#{mem_usage_average}Mb")
   
-  # Dashing.send_event('valuation', { current: current_valuation, last: last_valuation })
-  # Dashing.send_event('synergy',   { value: rand(100) })
 end
