@@ -13,7 +13,7 @@ mem_usage_history = CircularBuffer.new(time_to_store)
 Dashing.scheduler.every '1s', allow_overlapping: false do
 
   stats = app.stats.values
-  usage = stats.map { |s| s[:stats][:usage] }
+  usage = stats.map { |s| s.has_key?(:stats) ? s[:stats][:usage] : nil }.compact
 
   mem_usage = usage.map { |u| u[:mem] }
   cpu_usage = usage.map { |u| u[:cpu] }

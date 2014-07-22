@@ -1,7 +1,7 @@
 source 'https://rubygems.org'
 
+ruby '1.9.3'
 
-# Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.1.4'
 
 gem 'sqlite3'
@@ -21,7 +21,7 @@ gem 'cfoundry'
 gem 'cf-uaac'
 gem 'settingslogic'
 
-
+gem 'rails_12factor'
 # gem 'bcrypt', '~> 3.1.7'
 # gem 'debugger', group: [:development, :test]
 
