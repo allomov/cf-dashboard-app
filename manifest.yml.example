@@ -13,3 +13,4 @@ applications:
       REDIS_HOST: <redis-host>
       REDIS_PORT: 6379
       SECRET_KEY_BASE: very-secret-production-key
+      RAILS_ENV: development
