@@ -18,6 +18,9 @@ Dashing.scheduler.every '1s', allow_overlapping: false do
   unless usage.empty?
     mem_usage = usage.map { |u| u[:mem] }
     cpu_usage = usage.map { |u| u[:cpu] }
+
+    total_instances = app.total_instances
+    running_instances = app.running_instances
     
     mem_usage_average = (mem_usage.sum / mem_usage.count) / 1048576        # mb
     cpu_usage_average = ((cpu_usage.sum / cpu_usage.count) * 100).round(3) # persents
@@ -27,9 +30,12 @@ Dashing.scheduler.every '1s', allow_overlapping: false do
     cpu_usage_history << {'x' => time, 'y' => cpu_usage_average}
     mem_usage_history << {'x' => time, 'y' => mem_usage_average}
 
-    Dashing.send_event('cpu-meter', {value: cpu_usage_average})
-    Dashing.send_event('mem-meter', {value: mem_usage_average})
-    Dashing.send_event('cpu-average', points: cpu_usage_history, displayValue: "#{cpu_usage_average}%")
-    Dashing.send_event('mem-average', points: mem_usage_history, displayValue: "#{mem_usage_average}Mb")
+    Dashing.send_event('cpu-meter', {value: cpu_usage_average.round(2)})
+    Dashing.send_event('mem-meter', {value: mem_usage_average.round(2)})
+    Dashing.send_event('cpu-average', points: cpu_usage_history, displayValue: "#{cpu_usage_average}%", title: 'CPU')
+    # Dashing.send_event('mem-average', points: mem_usage_history, displayValue: "#{mem_usage_average}Mb")
+    Dashing.send_event('total-instances', title: 'Total Instances', current: total_instances)
+    Dashing.send_event('running-instances', title: 'Running Instances', current: running_instances)
+    Dashing.send_event('deployed-at', text: app.created_at.strftime("%B %d, %Y at %I:%M%p"))
   end
 end

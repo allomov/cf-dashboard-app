@@ -2,26 +2,53 @@
   Altoros: Cloud Foundry dashboard application.
 <% end %>
 
+<script type="text/javascript">
+  timerStart = Date.now();
+  $(document).ready(function(){
+    var time = Date.now() - timerStart;
+    timer = $('#load-timer');
+    timer.find('.seconds').text(time/1000);
+    timer.fadeIn();
+  });
+</script>
+
+
 <div class="gridster">
   <ul>
 
-    <li data-row="1" data-col="1" data-sizex="2" data-sizey="1">
-      <div data-id="welcome" data-view="Image" data-image="/altoros_logo.png" style="background-color: #ddd"></div>
+    <li data-row="1" data-col="1" data-sizex="1" data-sizey="1">
+      <div data-id="welcome" data-view="AltorosLogo" style="background-color: #ddd"></div>
     </li>
 
     <li data-row="1" data-col="1" data-sizex="1" data-sizey="1">
       <div data-id="cpu-meter" data-view="Meter" data-title="CPU" data-min="0" data-max="100"></div>
     </li>
+
     <li data-row="1" data-col="1" data-sizex="1" data-sizey="1">
-      <div data-id="mem-meter" data-view="Meter" data-title="Memory" data-min="0" data-max="1024" style='background-color: F#3A74C'></div>
+      <div data-id="mem-meter" data-view="Meter" data-title="Memory" data-min="0" data-max="1024" style='background-color: #3BA95C'></div>
+    </li>
+
+    <li data-row="1" data-col="1" data-sizex="1" data-sizey="1">
+      <div data-id="deployed-at" data-view="Text" data-title="The application was deployed on" style='background-color: F#3A74C'></div>
+    </li>
+
+    <li data-row="1" data-col="1" data-sizex="1" data-sizey="1" style='background-color: #fff'>
+      <div data-id="total-instances" data-view="Number" style='background-color: #F3A74C'></div>
+    </li>
+
+    <li data-row="1" data-col="1" data-sizex="1" data-sizey="1">
+      <div data-id="running-instances" data-view="Number"></div>
     </li>
 
     <li data-row="1" data-col="1" data-sizex="2" data-sizey="1">
       <div data-id="cpu-average" data-view="Graph" style="background-color: #6A3DE9"></div>
     </li>
 
-    <li data-row="1" data-col="1" data-sizex="2" data-sizey="1">
-      <div data-id="mem-average" data-view="Graph"></div>
-    </li>
   </ul>
 </div>
+
+
+<div style="margin: 5px auto; text-align: center; font-size: 0.8em; color: #777; display: none" id='load-timer'>
+  Document is loaded in <span class='seconds'></span> seconds.
+</div>
+
