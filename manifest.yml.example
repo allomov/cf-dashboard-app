@@ -5,7 +5,7 @@ applications:
     instances: 1
     env:
       CF_API: <cf-api>
-      CF_USER: <cf-user>
+      CF_USERNAME: <cf-user>
       CF_PASSWORD: <cf-password>
       CF_ORGANIZATION: <organization-name>
       CF_SPACE: <space-name>
