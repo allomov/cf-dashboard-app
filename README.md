@@ -1,5 +1,5 @@
 Altorosdemo
-============
+=============
 
 The repository contains [Dashing](https://github.com/Shopify/dashing) application build upon [dahsing-rails](https://github.com/gottfrois/dashing-rails) project. 
 
