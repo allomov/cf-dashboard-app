@@ -35,7 +35,7 @@ In order to configure using environment variables you'll need to specify followi
 * `REDIS_PORT` - redis port, 6379 is used by default
 
 How to run
-==========
+===========
 
 Define existing Cloud Foundry organization, space and application in configuration, then run `rails s`
 
