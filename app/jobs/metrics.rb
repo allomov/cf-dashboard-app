@@ -19,7 +19,7 @@ Dashing.scheduler.every '1s', allow_overlapping: false do
     mem_usage = usage.map { |u| u[:mem] }
     cpu_usage = usage.map { |u| u[:cpu] }
 
-    total_instances = app.total_instances
+    total_instances = stats.size
     running_instances = app.running_instances
     
     mem_usage_average = (mem_usage.sum / mem_usage.count) / 1048576        # mb
