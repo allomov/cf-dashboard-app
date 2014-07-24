@@ -1,5 +1,5 @@
 Altorosdemo
-=============
+============
 
 The repository contains [Dashing](https://github.com/Shopify/dashing) application build upon [dahsing-rails](https://github.com/gottfrois/dashing-rails) project. 
 
@@ -8,7 +8,7 @@ Application monitors load of Cloud Foundry application and displays common appli
 ![Altorosdemo project dashboard example](https://github.com/Altoros/altorosdemo/raw/master/public/dashboard-example.jpeg "Altorosdemo dashboard example")
 
 Requirements
-============
+=============
 
 * Ruby 1.9.3
 * Rails 4.1.2
