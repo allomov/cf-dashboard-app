@@ -1,5 +1,5 @@
 Altorosdemo
-===========
+============
 
 The repository contains [Dashing](https://github.com/Shopify/dashing) application build upon [dahsing-rails](https://github.com/gottfrois/dashing-rails) project. 
 
@@ -8,7 +8,7 @@ Application monitors load of Cloud Foundry application and displays common appli
 ![Altorosdemo project dashboard example](https://github.com/Altoros/altorosdemo/raw/master/public/dashboard-example.jpeg "Altorosdemo dashboard example")
 
 Requirements
-============
+=============
 
 * Ruby 1.9.3
 * Rails 4.1.2
@@ -35,7 +35,7 @@ In order to configure using environment variables you'll need to specify followi
 * `REDIS_PORT` - redis port, 6379 is used by default
 
 How to run
-==========
+===========
 
 Define existing Cloud Foundry organization, space and application in configuration, then run `rails s`
 
