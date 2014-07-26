@@ -3,7 +3,7 @@ Altorosdemo
 
 The repository contains [Dashing](https://github.com/Shopify/dashing) application build upon [dahsing-rails](https://github.com/gottfrois/dashing-rails) project. 
 
-Application monitors load of Cloud Foundry application and displays common application characteristics (see picture).
+Application monitors statistics for an application deployed to Cloud Foundry (statistics provided by Cloud Controller API) and displays the stats in the form of a dashboard (see picture).
 
 ![Altorosdemo project dashboard example](https://github.com/Altoros/altorosdemo/raw/master/public/dashboard-example.jpeg "Altorosdemo dashboard example")
 
