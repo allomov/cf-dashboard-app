@@ -1,5 +1,5 @@
 <% content_for :title do %>
-  Altoros: Cloud Foundry dashboard application.
+  Altoros Demo: Continuous App Delivery on Cloud Foundry with Github, Jenkins and Autoscaling
 <% end %>
 
 <script type="text/javascript">
@@ -21,11 +21,11 @@
     </li>
 
     <li data-row="1" data-col="1" data-sizex="1" data-sizey="1">
-      <div data-id="cpu-meter" data-view="Meter" data-title="CPU" data-min="0" data-max="100"></div>
+      <div data-id="cpu-meter" data-view="Meter" data-title="CPU Utilizastion, %" data-min="0" data-max="100"></div>
     </li>
 
     <li data-row="1" data-col="1" data-sizex="1" data-sizey="1">
-      <div data-id="mem-meter" data-view="Meter" data-title="Memory" data-min="0" data-max="1024" style='background-color: #3BA95C'></div>
+      <div data-id="mem-meter" data-view="Meter" data-title="Memory Utilization, MB" data-min="0" data-max="1024" style='background-color: #3BA95C'></div>
     </li>
 
     <li data-row="1" data-col="1" data-sizex="1" data-sizey="1">
@@ -41,7 +41,7 @@
     </li>
 
     <li data-row="1" data-col="1" data-sizex="2" data-sizey="1">
-      <div data-id="cpu-average" data-view="Graph" style="background-color: #6A3DE9"></div>
+      <div data-id="cpu-average" data-view="Graph" data-title="CPU Load Average" style="background-color: #6A3DE9"></div>
     </li>
 
   </ul>
@@ -49,6 +49,6 @@
 
 
 <div style="margin: 5px auto; text-align: center; font-size: 0.8em; color: #777; display: none" id='load-timer'>
-  Document is loaded in <span class='seconds'></span> seconds.
+  Application loaded in <span class='seconds'></span> seconds.
 </div>
 
