@@ -5,10 +5,13 @@ current_valuation = 0
 
 app = CloudFoundryManager.application
 
-time = 0
-time_to_store = 60
-cpu_usage_history = CircularBuffer.new(time_to_store)
-mem_usage_history = CircularBuffer.new(time_to_store)
+time_to_store_in_seconds = 5 * 60
+# start_time = Time.now.to_i
+# time_range = (start_time .. time_to_store_in_seconds * 1000)
+# init_data = time_range.step(1000).map { |t| {'x' => t, 'y' => 0} }
+
+cpu_usage_history = CircularBuffer.new(time_to_store_in_seconds)
+mem_usage_history = CircularBuffer.new(time_to_store_in_seconds)
 
 Dashing.scheduler.every '1s', allow_overlapping: false do
 
@@ -25,7 +28,7 @@ Dashing.scheduler.every '1s', allow_overlapping: false do
     mem_usage_average = (mem_usage.sum / mem_usage.count) / 1048576        # mb
     cpu_usage_average = ((cpu_usage.sum / cpu_usage.count) * 100).round(3) # persents
 
-    time = time + 1
+    time = Time.now.in_time_zone(Time.zone).to_i
 
     cpu_usage_history << {'x' => time, 'y' => cpu_usage_average}
     mem_usage_history << {'x' => time, 'y' => mem_usage_average}
