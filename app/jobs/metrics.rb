@@ -38,8 +38,7 @@ Dashing.scheduler.every '1s', allow_overlapping: false do
     Dashing.send_event('total-instances', title: 'Total Instances', current: total_instances)
     Dashing.send_event('running-instances', title: 'Running Instances', current: running_instances)
 
-    app_created_at = DateTime.iso8601(app.created_at)
-    app_created_at_with_zone = application_created_at.in_time_zone(Time.zone)
-    Dashing.send_event('deployed-at', text: app_created_at_converted.strftime("%B %d, %Y at %I:%M%p"))
+    app_created_at_with_zone = app.created_at.in_time_zone(Time.zone)
+    Dashing.send_event('deployed-at', text: app_created_at_with_zone.strftime("%B %d, %Y at %I:%M%p"))
   end
 end
