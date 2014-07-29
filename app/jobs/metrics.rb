@@ -33,7 +33,8 @@ Dashing.scheduler.every '1s', allow_overlapping: false do
 
     Dashing.send_event('cpu-meter', {value: cpu_usage_average.round(2)})
     Dashing.send_event('mem-meter', {value: mem_usage_average.round(2)})
-    Dashing.send_event('cpu-average', data: cpu_usage_history.compact, displayValue: "#{cpu_usage_average}%", title: 'CPU')
+    # Dashing.send_event('cpu-average', data: cpu_usage_history.compact, displayValue: Process.pid, title: 'CPU')
+    Dashing.send_event('cpu-average', current_value: cpu_usage_average, current_time: time, displayValue: cpu_usage_average)
     Dashing.send_event('total-instances', title: 'Total Instances', current: total_instances)
     Dashing.send_event('running-instances', title: 'Running Instances', current: running_instances)
 

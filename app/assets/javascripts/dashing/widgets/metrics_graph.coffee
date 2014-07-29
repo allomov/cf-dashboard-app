@@ -20,60 +20,55 @@ class Dashing.MetricsGraph extends Dashing.Widget
     @height = height
     @width = width
 
-    data = [{time: new Date(), y:0}]
+    @time_to_display = 60;
+    max_time  = new Date()
+    min_time  = new Date(max_time.getTime() - @time_to_display*1000)
 
+
+    @time_scale  = d3.time.scale().domain([min_time, max_time]).range([0, @width])
+    @value_scale = d3.scale.linear().domain([0, 100]).range([@height, 0])
 
     @svg = d3.select(@node)
             .append('svg:svg')
             .attr('width', width)
             .attr('height', height).attr('id', 'metrics-graph');
 
-    # console.log(@)
-
-
     @svg.append("svg:rect")
         .attr('class', 'background').attr('width', width).attr('height', height)
-       # .attr("transform", "translate(" + margin[3] + "," + margin[0] + ")");
 
-    # @svg.selectAll('path').data(data).enter()
-    #     .append("path").attr('class', 'participants').attr('d',
-    #         d3.svg.area().interpolate('basis')
-    #         .x((d, i) -> timeScale(new Date(d.time)))
-    #         .y0(height)
-    #         .y1((d, i) -> yScale(d.value)))
-
-    # @svg.data(@get('data')) if @get('data')
+    @graph_data = []
 
   onData: (data) ->
-    data = data.data
-
-    minTime  = d3.min(data, (d) -> new Date(d.time))
-    timeDomainInSeconds = 60;
+    time  = data.current_time
+    value = data.current_value
     
-    maxTime = Math.max(d3.max(data, (d) -> new Date(d.time)), new Date(minTime.getTime() + timeDomainInSeconds*1000))
-    @timeScale  = d3.time.scale().domain([minTime, maxTime]).range([0, @width])
-    @yScale = d3.scale.linear().domain([0, 100]).range([@height, 0])
+    return if not @graph_data
 
-    xAxis = d3.svg.axis().scale(@timeScale)
-                  .tickSubdivide(false).tickFormat(d3.time.format('%e %b'))
-                  .tickSize(0).tickPadding(10)
+    @graph_data.push({ 'time': new Date(time), 'value': value })
 
-    yAxis = d3.svg.axis().scale(@yScale).ticks(4).orient("right").tickSize(0).tickSubdivide(true)
+    max_time  = new Date()
+    min_time  = new Date(max_time.getTime() - @time_to_display*1000)
 
-    path_finder = d3.svg.area().interpolate('basis')
-              .x((d, i) => @timeScale(new Date(d.time)))
+    @time_scale.domain([min_time, max_time])
+    @graph_data = @graph_data.filter((d) => d.time >= min_time.setSeconds(min_time.getSeconds() - 5))
+
+
+    path_string = d3.svg.area().interpolate('basis')
+              .x((d, i) => @time_scale(new Date(d.time)))
               .y0(@height)
-              .y1((d, i) => @yScale(d.value))
+              .y1((d, i) => @value_scale(d.value))(@graph_data)
     
-    # console.log(@data)
-
+    
     @svg.selectAll("path").remove()
     
-    path = @svg.selectAll("path").data([data])
-    
-    # debugger;
+    # path = @svg.selectAll("path").data([@graph_data])
 
-    path.enter().append("path").attr('class', 'values').attr('stroke', 'red')
-          .attr('style', 'fill: red').attr('d', path_finder(data))
+    @svg.append("path").attr('class', 'values').attr('stroke', 'red')
+          .attr('style', 'fill: red').attr('d', path_string)
     
     # path.exit().remove()
+    # xAxis = d3.svg.axis().scale(@time_scale)
+    #               .tickSubdivide(false).tickFormat(d3.time.format('%e %b'))
+    #               .tickSize(0).tickPadding(10)
+
+    # yAxis = d3.svg.axis().scale(@value_scale).ticks(4).orient("right").tickSize(0).tickSubdivide(true)
