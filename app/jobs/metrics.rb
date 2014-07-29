@@ -1,17 +1,15 @@
 require 'cloud_foundry_manager'
 require 'circular_buffer'
+require 'limited_queue'
 
 current_valuation = 0
 
 app = CloudFoundryManager.application
 
-time_to_store_in_seconds = 5 * 60
-# start_time = Time.now.to_i
-# time_range = (start_time .. time_to_store_in_seconds * 1000)
-# init_data = time_range.step(1000).map { |t| {'x' => t, 'y' => 0} }
+time_to_store_in_seconds = 60
 
-cpu_usage_history = CircularBuffer.new(time_to_store_in_seconds)
-mem_usage_history = CircularBuffer.new(time_to_store_in_seconds)
+cpu_usage_history = LimitedQueue.new(time_to_store_in_seconds)
+mem_usage_history = LimitedQueue.new(time_to_store_in_seconds)
 
 Dashing.scheduler.every '1s', allow_overlapping: false do
 
@@ -28,16 +26,14 @@ Dashing.scheduler.every '1s', allow_overlapping: false do
     mem_usage_average = (mem_usage.sum / mem_usage.count) / 1048576        # mb
     cpu_usage_average = ((cpu_usage.sum / cpu_usage.count) * 100).round(3) # persents
 
-    time = Time.now.in_time_zone(Time.zone).to_i
+    time = Time.now.in_time_zone(Time.zone)
 
-    cpu_usage_history << {'x' => time, 'y' => cpu_usage_average}
-    mem_usage_history << {'x' => time, 'y' => mem_usage_average}
-
+    cpu_usage_average = (40 * rand + cpu_usage_average).round(3)
+    cpu_usage_history << {'time' => time, 'value' => cpu_usage_average}
 
     Dashing.send_event('cpu-meter', {value: cpu_usage_average.round(2)})
     Dashing.send_event('mem-meter', {value: mem_usage_average.round(2)})
-    Dashing.send_event('cpu-average', points: cpu_usage_history, displayValue: "#{cpu_usage_average}%", title: 'CPU')
-    # Dashing.send_event('mem-average', points: mem_usage_history, displayValue: "#{mem_usage_average}Mb")
+    Dashing.send_event('cpu-average', data: cpu_usage_history.compact, displayValue: "#{cpu_usage_average}%", title: 'CPU')
     Dashing.send_event('total-instances', title: 'Total Instances', current: total_instances)
     Dashing.send_event('running-instances', title: 'Running Instances', current: running_instances)
 
