@@ -1,15 +1,14 @@
 require 'cloud_foundry_manager'
-require 'circular_buffer'
-require 'limited_queue'
+require 'redis_circular_ordered_set'
 
 current_valuation = 0
 
 app = CloudFoundryManager.application
 
-time_to_store_in_seconds = 60
+time_to_store_in_seconds = 160
 
-cpu_usage_history = LimitedQueue.new(time_to_store_in_seconds)
-mem_usage_history = LimitedQueue.new(time_to_store_in_seconds)
+cpu_usage_history = RedisCircularOrderedSet.new(Dashing.redis, 'altorosdemo-cpu-usage-set', time_to_store_in_seconds)
+# mem_usage_history = RedisCircularOrderedSet.new(Dashing.redis, 'altorosdemo-mem-usage-set', time_to_store_in_seconds)
 
 Dashing.scheduler.every '1s', allow_overlapping: false do
 
@@ -26,15 +25,18 @@ Dashing.scheduler.every '1s', allow_overlapping: false do
     mem_usage_average = (mem_usage.sum / mem_usage.count) / 1048576        # mb
     cpu_usage_average = ((cpu_usage.sum / cpu_usage.count) * 100).round(3) # persents
 
-    time = Time.now.in_time_zone(Time.zone)
+    current_time = Time.now.in_time_zone(Time.zone)
 
-    cpu_usage_average = (40 * rand + cpu_usage_average).round(3)
-    cpu_usage_history << {'time' => time, 'value' => cpu_usage_average}
+    # cpu_usage_average = (cpu_usage_average).round(3)
+    cpu_usage_history.add(current_time, cpu_usage_average)
+
 
     Dashing.send_event('cpu-meter', {value: cpu_usage_average.round(2)})
     Dashing.send_event('mem-meter', {value: mem_usage_average.round(2)})
     # Dashing.send_event('cpu-average', data: cpu_usage_history.compact, displayValue: Process.pid, title: 'CPU')
-    Dashing.send_event('cpu-average', current_value: cpu_usage_average, current_time: time, displayValue: cpu_usage_average)
+    l = cpu_usage_history.list
+    puts l.size
+    Dashing.send_event('cpu-average', data: l, displayValue: cpu_usage_average)
     Dashing.send_event('total-instances', title: 'Total Instances', current: total_instances)
     Dashing.send_event('running-instances', title: 'Running Instances', current: running_instances)
 

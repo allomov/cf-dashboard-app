@@ -21,6 +21,7 @@ class Dashing.MetricsGraph extends Dashing.Widget
     @width = width
 
     @time_to_display = 60;
+
     max_time  = new Date()
     min_time  = new Date(max_time.getTime() - @time_to_display*1000)
 
@@ -36,28 +37,31 @@ class Dashing.MetricsGraph extends Dashing.Widget
     @svg.append("svg:rect")
         .attr('class', 'background').attr('width', width).attr('height', height)
 
-    @graph_data = []
-
   onData: (data) ->
-    time  = data.current_time
-    value = data.current_value
-    
-    return if not @graph_data
 
-    @graph_data.push({ 'time': new Date(time), 'value': value })
+    @graph_data = data.data
 
     max_time  = new Date()
+    max_time  = new Date(max_time.getTime() - 1000)
     min_time  = new Date(max_time.getTime() - @time_to_display*1000)
 
-    @time_scale.domain([min_time, max_time])
-    @graph_data = @graph_data.filter((d) => d.time >= min_time.setSeconds(min_time.getSeconds() - 5))
+    # min = d3.min(@graph_data, (d) -> new Date(d.time))
+    # max = d3.max(@graph_data, (d) -> new Date(d.time))
+    # console.log("---------")
+    # console.log(">>>min: " + min_time)
+    # console.log(">>>max: " + max_time)
+    # console.log("min: " + min)
+    # console.log("max: " + max)
+    # console.log("---------")
 
+    @time_scale.domain([min_time, max_time])
+    # @graph_data = @graph_data.filter((d) => d.time >= min_time.setSeconds(min_time.getSeconds() - 5))
 
     path_string = d3.svg.area().interpolate('basis')
               .x((d, i) => @time_scale(new Date(d.time)))
               .y0(@height)
               .y1((d, i) => @value_scale(d.value))(@graph_data)
-    
+
     
     @svg.selectAll("path").remove()
     
