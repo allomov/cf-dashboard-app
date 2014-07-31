@@ -8,11 +8,6 @@ class Dashing.MetricsGraph extends Dashing.Widget
 
   ready: ->
 
-    # margin = [0, 20, 40, 0];
-    # totalHeight = 340, totalWidth = 620;
-    # width  = totalWidth  - margin[1] - margin[3];
-    # height = totalHeight - margin[0] - margin[2];
-
     container = $(@node).parent()
     # Gross hacks. Let's fix this.
     width = (Dashing.widget_base_dimensions[0] * container.data("sizex")) + Dashing.widget_margins[0] * 2 * (container.data("sizex") - 1)
@@ -20,7 +15,7 @@ class Dashing.MetricsGraph extends Dashing.Widget
     @height = height
     @width = width
 
-    @time_to_display = 60;
+    @time_to_display = 5 * 60;
 
     max_time  = new Date()
     min_time  = new Date(max_time.getTime() - @time_to_display*1000)
@@ -37,7 +32,25 @@ class Dashing.MetricsGraph extends Dashing.Widget
     @svg.append("svg:rect")
         .attr('class', 'background').attr('width', width).attr('height', height)
 
+    @svg.append("path")
+          .attr('class', 'values')
+          .attr('stroke', 'red')
+          .attr('style', 'fill: red')
+
+    @time_axis = d3.svg.axis().ticks(d3.time.minutes, 1)
+                  .tickSubdivide(false).tickFormat(d3.time.format('%H:%M'))
+                  .tickSize(0).tickPadding(10)
+
+    @value_axis = d3.svg.axis().scale(@value_scale).tickValues([20, 40, 60, 80]).orient("left").tickSize(0).tickSubdivide(true);
+
+    @svg.append("svg:g")
+        .attr("class", "y-axis")
+        .attr("transform", "translate(35,0)")
+        .call(@value_axis);
+
   onData: (data) ->
+
+    return unless @time_scale?
 
     @graph_data = data.data
 
@@ -63,16 +76,23 @@ class Dashing.MetricsGraph extends Dashing.Widget
               .y1((d, i) => @value_scale(d.value))(@graph_data)
 
     
-    @svg.selectAll("path").remove()
+    # @svg.selectAll("path").remove()
     
     # path = @svg.selectAll("path").data([@graph_data])
 
-    @svg.append("path").attr('class', 'values').attr('stroke', 'red')
-          .attr('style', 'fill: red').attr('d', path_string)
-    
-    # path.exit().remove()
-    # xAxis = d3.svg.axis().scale(@time_scale)
-    #               .tickSubdivide(false).tickFormat(d3.time.format('%e %b'))
-    #               .tickSize(0).tickPadding(10)
+    # @svg.append("path").attr('class', 'values').attr('stroke', 'red')
+    #       .attr('style', 'fill: red').attr('d', path_string)
+
+    @svg.select("path").attr('d', path_string)
+
+    @time_axis = @time_axis.scale(@time_scale)
+                  
+    @svg.select("g.x-axis").remove()
+    @svg.append("svg:g")
+        .attr("class", "x-axis")
+        .attr("transform", "translate(0," + (@height - 30) + ")")
+        .call(@time_axis)
 
     # yAxis = d3.svg.axis().scale(@value_scale).ticks(4).orient("right").tickSize(0).tickSubdivide(true)
+
+    # path.exit().remove()

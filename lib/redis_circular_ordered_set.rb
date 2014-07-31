@@ -10,8 +10,6 @@ class RedisCircularOrderedSet
   	float_time = time.to_i
   	@client.zadd(@name, float_time, value.to_s)
     min_time = float_time - @max_duration
-    puts "times: #{self.map { |a, b| b }}"
-    puts "min_time: #{min_time}"
   	@client.zremrangebyscore(@name, "0", "(#{min_time.to_i}")
   end
 
