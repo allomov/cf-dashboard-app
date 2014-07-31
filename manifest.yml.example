@@ -14,3 +14,4 @@ applications:
       REDIS_PORT: 6379
       SECRET_KEY_BASE: very-secret-production-key
       RAILS_ENV: development
+      DATABASE_URL: sqlite3://db.sqlite

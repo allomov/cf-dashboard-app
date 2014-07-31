@@ -22,6 +22,9 @@ gem 'cf-uaac'
 gem 'settingslogic'
 
 gem 'rails_12factor'
+
+gem 'sqlite3'
+
 # gem 'bcrypt', '~> 3.1.7'
 # gem 'debugger', group: [:development, :test]
 
