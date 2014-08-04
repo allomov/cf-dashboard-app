@@ -3,7 +3,6 @@ class Dashing.InstancesInformation extends Dashing.Widget
   @accessor 'instances', ->
     data = @get('data')
     instances = new Batman.Set()
-    # "0" => { state => "", stats => "" }
     for index, value of data
       s = value.stats
       u = s.usage
@@ -14,7 +13,6 @@ class Dashing.InstancesInformation extends Dashing.Widget
       	disk:   u.disk
       	uptime: s.uptime
       	state:  value.state
-    console.log(instances)
     instances.sortedBy("index")
 
   ready: ->

@@ -5,6 +5,36 @@
 // ----------------------------------------------------------------------------
 // Widget-instancesinformation styles
 // ----------------------------------------------------------------------------
-.widget-instancesinformation {
+.widget.widget-instances-information {
+  vertical-align: top;
+  background-color: #E0E4E5;
+  color: #6B6B6B;
+  text-align: left;
+  h1, .header { text-transform: uppercase; font-weight: bold; }
+  h1 { display: block; text-align: left; font-size: 1em; }
+  .header { height: 40px; border-bottom: 4px solid #E0E4E5; }
+  // table { border-spacing:5em;  }
+  tr {
+  	
+  }
+
+  .boxer {
+    display: table;
+    border-collapse: collapse;
+    width: 100%;
+    .box-row {
+      display: table-row; 
+      background-color: #ECEFEF;
+      width: 100%
+    }
+    .box {
+      display: table-cell;
+      text-align: left;
+      vertical-align: top;
+      padding: 10px;
+      font-size: 0.8em;
+      border-bottom: 2px solid #E0E4E5;
+    }
+  }
 
 }

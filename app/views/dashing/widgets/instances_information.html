@@ -1,14 +1,22 @@
 <h1 class="title" data-bind="title"></h1>
 
-<table>
-	<tr data-foreach-instance='instances'>
-      <td type="text" data-bind='instance.index'></td>
-      <td data-bind='instance.cpu    | humanize_percents'></td>
-      <td data-bind='instance.mem    | humanize_memory'></td>
-      <td data-bind='instance.disk   | humanize_memory'></td>
-      <td data-bind='instance.uptime | humanize_time'></td>
-      <td data-bind='instance.state  | downcase | capitalize'></td>
-	</div>
-</table>
+<div class="boxer">
+    <div class="header box-row">
+    	<div class="box">Index</div>
+    	<div class="box">CPU</div>
+    	<div class="box">Memory</div>
+    	<div class="box">Disk</div>
+    	<div class="box">Uptime</div>
+    	<div class="box">State</div>
+    </div>
+    <div data-foreach-instance='instances' class="box-row">
+      <div class="box" data-bind='instance.index'></div>
+      <div class="box" data-bind='instance.cpu    | humanize_percents'></div>
+      <div class="box" data-bind='instance.mem    | humanize_memory'></div>
+      <div class="box" data-bind='instance.disk   | humanize_memory'></div>
+      <div class="box" data-bind='instance.uptime | humanize_time'></div>
+      <div class="box" data-bind='instance.state  | downcase | capitalize'></div>
+    </div>
+</div>
 
 <p class="more-info" data-bind="moreinfo"></p>
