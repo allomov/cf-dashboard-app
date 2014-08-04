@@ -8,7 +8,7 @@ Application monitors statistics for an application deployed to Cloud Foundry (st
 ![Altorosdemo project dashboard example](https://github.com/Altoros/altorosdemo/raw/master/public/dashboard-example.jpeg "Altorosdemo dashboard example")
 
 Requirements
-=============
+===============
 
 * Ruby 1.9.3
 * Rails 4.1.2
