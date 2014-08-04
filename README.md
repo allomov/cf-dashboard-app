@@ -37,7 +37,7 @@ In order to configure using environment variables you'll need to specify followi
 How to run
 ===========
 
-Define existing Cloud Foundry organization, space and application in configuration, then run `rails s`
+Define existing Cloud Foundry organization, space and application in configuration, then run `rails s`   
 
 
 Deployment to Cloud Foundry
