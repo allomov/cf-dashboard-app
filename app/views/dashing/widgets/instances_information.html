@@ -1,0 +1,14 @@
+<h1 class="title" data-bind="title"></h1>
+
+<table>
+	<tr data-foreach-instance='instances'>
+      <td type="text" data-bind='instance.index'></td>
+      <td data-bind='instance.cpu    | humanize_percents'></td>
+      <td data-bind='instance.mem    | humanize_memory'></td>
+      <td data-bind='instance.disk   | humanize_memory'></td>
+      <td data-bind='instance.uptime | humanize_time'></td>
+      <td data-bind='instance.state  | downcase | capitalize'></td>
+	</div>
+</table>
+
+<p class="more-info" data-bind="moreinfo"></p>

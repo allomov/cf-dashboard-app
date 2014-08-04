@@ -12,8 +12,12 @@ cpu_usage_history = RedisCircularOrderedSet.new(Dashing.redis, 'altorosdemo-cpu-
 
 Dashing.scheduler.every '1s', allow_overlapping: false do
 
-  stats = app.stats.values
+  stats_hash = app.stats
+
+  stats = stats_hash.values
   usage = stats.map { |s| s.has_key?(:stats) ? s[:stats][:usage] : nil }.compact
+
+  instances_information = stats_hash
 
   unless usage.empty?
     mem_usage = usage.map { |u| u[:mem] }
@@ -34,10 +38,11 @@ Dashing.scheduler.every '1s', allow_overlapping: false do
     Dashing.send_event('mem-meter', {value: mem_usage_average.round(2)})
     # Dashing.send_event('cpu-average', data: cpu_usage_history.compact, displayValue: Process.pid, title: 'CPU')
     Dashing.send_event('cpu-average', data: cpu_usage_history.list, displayValue: cpu_usage_average)
-    Dashing.send_event('total-instances', title: 'Total Instances', current: total_instances)
-    Dashing.send_event('current-connections', current: DashboardRequest.count)
-    Dashing.send_event('total-connections', current: total_instances)
-    Dashing.send_event('running-instances', title: 'Running Instances', current: running_instances)
+    Dashing.send_event('total-instances', current: total_instances)
+    Dashing.send_event('instances-information', data: instances_information)
+    Dashing.send_event('current-connections', current: Dashing.redis.pubsub(:numpat))
+    Dashing.send_event('total-connections', current:  DashboardRequest.count)
+    Dashing.send_event('running-instances', current: running_instances)
 
     app_created_at_with_zone = app.created_at.in_time_zone(Time.zone)
     Dashing.send_event('deployed-at', text: app_created_at_with_zone.strftime("%B %d, %Y at %I:%M%p"))

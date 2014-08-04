@@ -1,3 +1,10 @@
+GIT
+  remote: https://github.com/allomov/redis-rb.git
+  revision: 81e54dee3dd248a11b51c98b217bc45235327e26
+  branch: add-pubsub
+  specs:
+    redis (3.1.0)
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -118,7 +125,6 @@ GEM
       rake (>= 0.8.7)
       thor (>= 0.18.1, < 2.0)
     rake (10.3.2)
-    redis (3.1.0)
     ref (1.0.5)
     rubyzip (0.9.9)
     rufus-scheduler (3.0.8)
@@ -168,6 +174,7 @@ DEPENDENCIES
   puma
   rails (= 4.1.4)
   rails_12factor
+  redis!
   sass-rails (~> 4.0.3)
   settingslogic
   spring
