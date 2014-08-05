@@ -41,7 +41,7 @@ Dashing.scheduler.every '1s', allow_overlapping: false do
     Dashing.send_event('total-instances', current: total_instances)
     Dashing.send_event('instances-information', data: instances_information)
     Dashing.send_event('current-connections', current: Dashing.redis.pubsub(:numpat))
-    Dashing.send_event('total-connections', current:  DashboardRequest.count)
+    Dashing.send_event('total-connections', current: DashboardRequest.count)
     Dashing.send_event('running-instances', current: running_instances)
 
     app_created_at_with_zone = app.created_at.in_time_zone(Time.zone)

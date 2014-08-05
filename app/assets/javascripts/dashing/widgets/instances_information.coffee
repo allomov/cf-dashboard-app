@@ -28,9 +28,6 @@ class Dashing.InstancesInformation extends Dashing.Widget
     $(".instances-#{if flag then 'un' else ''}available", @node).hide()
 
   show_all_instances: (event) ->
-    $('#instances-dialog .instance-info-row', @node).remove()
-    dialog_table = @instances.map((c) => @instance_row(c)).join("\n")
-    $('#instances-dialog .table', @node).append(dialog_table)
     $('#instances-dialog').dialog('open')
     false
 
@@ -65,7 +62,12 @@ class Dashing.InstancesInformation extends Dashing.Widget
       $('.instances-information.table', @node).append(widget_table)
   
       $('.total-instances-count',  @node).text(@instances.length)
-      # $('.widget-instances-count', @node).text(if instances.length < 4 then instances.length else 4)
       
       more_button = $('.more-instances-information', @node)
-      if @instances.length > 4 then more_button.hide() else more_button.show()
+      if @instances.length < 4 then more_button.hide() else more_button.show()
+
+      dialog = $('.ui-dialog.ui-widget')
+      if dialog.length != 0
+        $('#instances-dialog .instance-info-row', dialog).remove()
+        dialog_table = @instances.map((c) => @instance_row(c)).join("\n")
+        $('#instances-dialog .table', dialog).append(dialog_table)
