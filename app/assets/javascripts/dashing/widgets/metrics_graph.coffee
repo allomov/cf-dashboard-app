@@ -1,7 +1,7 @@
 class Dashing.MetricsGraph extends Dashing.Widget
 
   @accessor 'current', ->
-    return @get('displayedValue') if @get('displayedValue')
+    return @get('displayValue') if @get('displayValue')
     data = @get('data')
     if data
       data[data.length - 1].value

@@ -2,21 +2,21 @@
 // Sass declarations
 // ----------------------------------------------------------------------------
 
+$widget-background-color:  #E0E4E5;
+$table-background-color: #ECEFEF;
+
 // ----------------------------------------------------------------------------
 // Widget-instancesinformation styles
 // ----------------------------------------------------------------------------
 .widget.widget-instances-information {
   vertical-align: top;
-  background-color: #E0E4E5;
+  background-color: $widget-background-color;
   color: #6B6B6B;
   text-align: left;
   h1, .header { text-transform: uppercase; font-weight: bold; }
   h1 { display: block; text-align: left; font-size: 1em; }
-  .header { height: 40px; border-bottom: 4px solid #E0E4E5; }
+  .header { height: 40px; border-bottom: 4px solid $widget-background-color; }
   // table { border-spacing:5em;  }
-  tr {
-  	
-  }
 
   .boxer {
     display: table;
@@ -24,7 +24,7 @@
     width: 100%;
     .box-row {
       display: table-row; 
-      background-color: #ECEFEF;
+      background-color: $table-background-color;
       width: 100%
     }
     .box {
@@ -33,8 +33,19 @@
       vertical-align: top;
       padding: 10px;
       font-size: 0.8em;
-      border-bottom: 2px solid #E0E4E5;
+      border-bottom: 2px solid $widget-background-color;
     }
   }
 
+  .instances-available, #instances-dialog { display: none; }
+  
+  .more-instances-information {
+    display: none;
+    background-color: $table-background-color;
+    padding: 10px;
+    font-size: 0.8em;
+    float: right;
+    margin-top: 40px;
+    &:hover { background-color: darken($table-background-color, 15); }
+  }
 }

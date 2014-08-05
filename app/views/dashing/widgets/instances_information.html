@@ -1,22 +1,37 @@
-<h1 class="title" data-bind="title"></h1>
-
-<div class="boxer">
-    <div class="header box-row">
-    	<div class="box">Index</div>
-    	<div class="box">CPU</div>
-    	<div class="box">Memory</div>
-    	<div class="box">Disk</div>
-    	<div class="box">Uptime</div>
-    	<div class="box">State</div>
-    </div>
-    <div data-foreach-instance='instances' class="box-row">
-      <div class="box" data-bind='instance.index'></div>
-      <div class="box" data-bind='instance.cpu    | humanize_percents'></div>
-      <div class="box" data-bind='instance.mem    | humanize_memory'></div>
-      <div class="box" data-bind='instance.disk   | humanize_memory'></div>
-      <div class="box" data-bind='instance.uptime | humanize_time'></div>
-      <div class="box" data-bind='instance.state  | downcase | capitalize'></div>
-    </div>
+<div class="instances-unavailable">
+  No data about instances is available.
 </div>
 
-<p class="more-info" data-bind="moreinfo"></p>
+<div class="instances-available">
+  <h1 class="title">Instance</h1>
+  
+  <div class="boxer instances-information table">
+      <div class="header box-row">
+        <div class="box">Index</div>
+        <div class="box">CPU</div>
+        <div class="box">Memory</div>
+        <div class="box">Disk</div>
+        <div class="box">Uptime</div>
+        <div class="box">State</div>
+      </div>
+  </div>
+  
+  <a class="more-instances-information" data-event-click='show_all_instances'>
+    Display all <span class="total-instances-count">0</span> instances
+  </a>
+</div>
+
+<div id="instances-dialog" class='widget widget-instances-information' title="Instances">
+  
+  <div class="boxer instances-information table">
+      <div class="header box-row">
+        <div class="box">Index</div>
+        <div class="box">CPU</div>
+        <div class="box">Memory</div>
+        <div class="box">Disk</div>
+        <div class="box">Uptime</div>
+        <div class="box">State</div>
+      </div>
+  </div>
+
+</div>
