@@ -23,7 +23,7 @@ Batman.Filters.humanize_memory = (memory_in_bytes) ->
   memory_in_megabytes = parseInt(memory_in_kilobytes / 1024)
   memory_in_gigabytes = parseInt(memory_in_megabytes / 1024)
 
-  megabytes = memory_in_kilobytes % 1024
+  megabytes = memory_in_megabytes % 1024
   gigabytes = memory_in_gigabytes
   if gigabytes != 0
     gigabytes + 'Gb'
