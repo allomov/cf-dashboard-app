@@ -13,5 +13,6 @@ applications:
       REDIS_HOST: <redis-host>
       REDIS_PORT: 6379
       SECRET_KEY_BASE: very-secret-production-key
-      RAILS_ENV: development
-      DATABASE_URL: sqlite3://db.sqlite
+      # DATABASE_URL is used to write correct config/database.yml
+      # it has following format: "<scheme>://<user>:<password>@<host>:<port>/<dbname>"
+      DATABASE_URL: <mysql-database-url>  
