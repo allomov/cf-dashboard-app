@@ -26,7 +26,10 @@ gem 'settingslogic'
 
 gem 'rails_12factor'
 
-gem 'sqlite3'
+gem 'sqlite3', group: :development
+
+
+gem 'mysql2', group: :production
 
 # gem 'bcrypt', '~> 3.1.7'
 # gem 'debugger', group: [:development, :test]
