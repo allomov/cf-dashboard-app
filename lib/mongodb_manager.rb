@@ -10,7 +10,8 @@ class MongodbManager
                                   default_options: {profile: false})
   end
 
-  def self.client
+  def self.client(force_connection = false)
+    @client = nil if force_connection
     @client ||= MongoClient.new(config.host, config.port)
   end
 
@@ -24,7 +25,7 @@ class MongodbManager
 
   def self.available?
     begin
-      return true unless client.nil?
+      return true unless client(true).nil?
     rescue Mongo::ConnectionFailure
       false
   	end
