@@ -12,3 +12,16 @@
 //
 //= require jquery-ui
 //= require_tree ./..
+
+$(function(){
+	window.connectionOpened = true;
+    Dashing.eventSource.addEventListener('error', function(e) {
+       if (window.connectionOpened) {
+           $('#connection-error').dialog();
+       }
+       window.connectionOpened = false;
+    });
+    Dashing.eventSource.addEventListener('open', function(e) {
+       window.connectionOpened = true;
+    });
+})
