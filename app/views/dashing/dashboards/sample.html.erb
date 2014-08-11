@@ -17,6 +17,11 @@
   <ul>
 
     <li data-row="1" data-col="1" data-sizex="1" data-sizey="1">
+      <div data-id="mongodb-widget" data-view="MongodbWidget"></div>
+    </li>
+
+
+    <li data-row="1" data-col="1" data-sizex="1" data-sizey="1">
       <div data-id="welcome" data-view="AltorosLogo" style="background-color: #ddd"></div>
     </li>
 
@@ -40,7 +45,7 @@
       <div data-id="running-instances" data-title="Running Instances Count" data-view="Number"></div>
     </li>
 
-    <li data-row="1" data-col="1" data-sizex="2" data-sizey="1">
+    <li data-row="1" data-col="1" data-sizex="3" data-sizey="1">
       <div data-id="instances-information" data-view="InstancesInformation" data-title="Instances"></div>
     </li>
 
@@ -64,4 +69,4 @@
   Page is loaded in <span class='seconds'>0</span> seconds.
 </div>
 
-<%= render partial: 'dialogs/connection_error' %>
+<%#= render partial: 'dialogs/connection_error' %>
