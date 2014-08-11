@@ -18,18 +18,17 @@ gem 'jquery-ui-rails'
 gem 'spring',        group: :development
 
 gem 'dashing-rails'
-gem 'puma'
 
 gem 'cfoundry'
 gem 'cf-uaac'
 gem 'settingslogic'
 
+
 gem 'rails_12factor'
 
+gem 'puma'
 gem 'sqlite3', group: :development
-
-
-gem 'mysql2', group: :production
+gem 'mysql2',  group: :production
 
 gem 'mongo'
 gem 'bson_ext'

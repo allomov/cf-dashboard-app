@@ -40,8 +40,10 @@ class Dashing.InstancesInformation extends Dashing.Widget
     for index, value of data
       s = if value.stats? then value.stats else {usage: {cpu: '-', mem: '-', disk: '-'}, uptime: '-'}
       u = s.usage
+      # console.log s
+      # console.log u
       @instances.add
-        index:  index
+        index:  f.humanize_dea_host s.host
         cpu:    f.humanize_percents u.cpu
         mem:    f.humanize_memory   u.mem
         disk:   f.humanize_memory   u.disk

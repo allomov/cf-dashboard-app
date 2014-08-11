@@ -38,3 +38,11 @@ Batman.Filters.humanize_percents = (value) ->
   percents = parseFloat(value) * 100
   percents = Math.round(parseFloat(percents) * Math.pow(10, 2)) / Math.pow(10, 2)
   percents + '%'
+
+
+Batman.Filters.humanize_dea_host = (value) ->
+  hosts =
+    '192.168.114.21': 'Pivotal CF, Dea 1'
+    '192.168.114.21': 'Pivotal CF, Dea 1'
+  if hosts[value]? then hosts[value] else value
+
