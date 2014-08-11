@@ -36,6 +36,9 @@ GEM
       tzinfo (~> 1.1)
     addressable (2.3.6)
     arel (5.0.1.20140414130214)
+    bson (1.10.2)
+    bson_ext (1.10.2)
+      bson (~> 1.10.2)
     builder (3.2.2)
     cf-uaa-lib (2.0.1)
       multi_json
@@ -98,6 +101,8 @@ GEM
       treetop (~> 1.4.8)
     mime-types (1.25.1)
     minitest (5.4.0)
+    mongo (1.10.2)
+      bson (= 1.10.2)
     multi_json (1.10.1)
     multipart-post (1.2.0)
     mysql2 (0.3.16)
@@ -169,12 +174,14 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  bson_ext
   cf-uaac
   cfoundry
   coffee-rails (~> 4.0.0)
   dashing-rails
   jquery-rails
   jquery-ui-rails
+  mongo
   mysql2
   puma
   rails (= 4.1.4)

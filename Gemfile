@@ -31,6 +31,9 @@ gem 'sqlite3', group: :development
 
 gem 'mysql2', group: :production
 
+gem 'mongo'
+gem 'bson_ext'
+
 # gem 'bcrypt', '~> 3.1.7'
 # gem 'debugger', group: [:development, :test]
 
