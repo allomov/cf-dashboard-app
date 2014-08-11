@@ -11,7 +11,7 @@ Dashing.configure do |config|
   config.redis_timeout  = 3
 
   # Redis namespace when pushing new data.
-  # config.redis_namespace = 'dashing_events'
+  config.redis_namespace = ENV['REDIS_NAMESPACE'] || 'dashing_events'
 
   # Dashing come with default widgets using css and coffeescript.
   # You can create your own widgets by adding the following files:
