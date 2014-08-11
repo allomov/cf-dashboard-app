@@ -2,7 +2,7 @@ class Dashing.InstancesInformation extends Dashing.Widget
 
   ready: ->
     # This is fired when the widget is done being rendered
-    $('#instances-dialog', @node).dialog({autoOpen: false, modal: true, width: 700, show : "blind", hide : "blind", minHeight: 500 })
+    $('#instances-dialog', @node).dialog({autoOpen: false, modal: true, width: 900, show : "blind", hide : "blind", minHeight: 500 })
     # console.log $('#instances-dialog', @node)
 
   table_cell: (content, class_name='') ->
