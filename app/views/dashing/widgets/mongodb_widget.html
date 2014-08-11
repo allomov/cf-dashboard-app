@@ -1,15 +1,14 @@
 <div class="mongodb-unavailable" data-hideif='mongodb-available'>
-  <h1 class="title">MongoDB is not available.</h1>
+  <h1 class="title">Mongo<span style="color: #FBDDA9">DB</span></h1>
+  <img src="/assets/mongo-logo.png" class="logo">
+  <p class="info">is not available.</p>
 </div>
 
 <div class="mongodb-available" data-showif='mongodb-available'>
-  <h1 class="title">MongoDB is available!</h1>
-
-  <h2 class="value">
-  	MongoDB contains <span class="documents-count" data-bind="documents-count">0</span> documents.
-  </h2>
-
+  <h1 class="title">Mongo<span style="color: #FBDDA9">DB</span></h1>  
+  <img src="/assets/mongo-logo.png" class="logo">
+  <p class="info">contains <span class="documents-count" data-bind="documents-count">0</span> documents.</p>
   <a class="create-document" data-event-click='create_document'>
-    Create document.
+    Create a document
   </a>
 </div>

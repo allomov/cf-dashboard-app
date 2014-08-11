@@ -3,7 +3,10 @@ require 'configuration'
 class CloudFoundryManager
 
   def self.config
-    @config ||= Configuration.new('config/cf.yml')
+    @config ||= Configuration.new('config/cf.yml', 
+                                  prefix: 'cf',
+                                  config_options: %w(username password api organization space application profile),
+                                  default_options: {profile: false})
   end
 
   def self.client

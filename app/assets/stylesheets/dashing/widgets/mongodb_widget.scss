@@ -1,10 +1,32 @@
 // ----------------------------------------------------------------------------
 // Sass declarations
 // ----------------------------------------------------------------------------
-
+$background-color: #3F2C1B;
 // ----------------------------------------------------------------------------
 // Widget-mongodbwidget styles
 // ----------------------------------------------------------------------------
-.widget-mongodbwidget {
+.widget-mongodb-widget {
+  background-color: $background-color;
+  .title { font-family: Times; font-size: 1.8em; }
+  .logo {
+    width: 100px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+  }
+  .mongodb-available {
+    .info { padding-top: 10px; padding-bottom: 25px; }
+    .create-document {
+	    background-color: darken($background-color, 5);
+	    padding: 10px;
+	    margin-top: 10px;
+	    font-size: 0.8em;
+	    margin-top: 6px;
+	    &:hover { background-color: darken($background-color, 15); }
+    }
+  }
+
+  .mongodb-unavailable {
+    .info { padding-top: 20px; color: #BE847F; padding-bottom: 40px; }
+  }
 
 }
