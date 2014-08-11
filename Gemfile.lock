@@ -1,4 +1,17 @@
 GIT
+  remote: https://github.com/allomov/dashing-rails
+  revision: 3068745d8a453981425d8a99f8b94222dd91a7fb
+  branch: demo
+  specs:
+    dashing-rails (2.3.2)
+      coffee-script (~> 2.2)
+      connection_pool (~> 2.0)
+      jquery-rails (~> 3.1)
+      rails (~> 4.1)
+      redis (~> 3.1)
+      rufus-scheduler (~> 3.0)
+
+GIT
   remote: https://github.com/allomov/redis-rb.git
   revision: 81e54dee3dd248a11b51c98b217bc45235327e26
   branch: add-pubsub
@@ -64,13 +77,6 @@ GEM
     coffee-script-source (1.7.1)
     connection_pool (2.0.0)
     cookiejar (0.3.2)
-    dashing-rails (2.3.2)
-      coffee-script (~> 2.2)
-      connection_pool (~> 2.0)
-      jquery-rails (~> 3.0)
-      rails (~> 4.1)
-      redis (~> 3.0)
-      rufus-scheduler (~> 3.0)
     em-http-request (1.1.2)
       addressable (>= 2.3.4)
       cookiejar
@@ -178,7 +184,7 @@ DEPENDENCIES
   cf-uaac
   cfoundry
   coffee-rails (~> 4.0.0)
-  dashing-rails
+  dashing-rails!
   jquery-rails
   jquery-ui-rails
   mongo

@@ -4,6 +4,8 @@ ruby '1.9.3'
 
 gem 'redis', git: 'https://github.com/allomov/redis-rb.git', branch: 'add-pubsub'
 
+
+
 gem 'rails', '4.1.4'
 
 # gem 'sqlite3'
@@ -17,7 +19,7 @@ gem 'jquery-ui-rails'
 # gem 'jbuilder', '~> 2.0'
 gem 'spring',        group: :development
 
-gem 'dashing-rails'
+gem 'dashing-rails', git: 'https://github.com/allomov/dashing-rails', branch: 'demo'
 
 gem 'cfoundry'
 gem 'cf-uaac'
