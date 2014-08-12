@@ -22,12 +22,13 @@ Rails.application.configure do
   # Disable Rails's static asset server (Apache or nginx will already do this).
 
   # Compress JavaScripts and CSS.
-  # config.serve_static_assets = false
-  # config.assets.js_compressor = Uglifier.new(mangle: false)
-  # config.assets.compile = false
-  # config.assets.css_compressor = :sass
-  # config.assets.digest = true
-  config.assets.debug = true  
+  config.serve_static_assets = false
+  config.assets.js_compressor = Uglifier.new(mangle: false)
+  config.assets.compile = false
+  config.assets.css_compressor = :sass
+  config.assets.digest = true
+
+  # config.assets.debug = true  
 
   # Do not fallback to assets pipeline if a precompiled asset is missed.
 

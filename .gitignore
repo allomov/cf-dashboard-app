@@ -21,6 +21,7 @@ database.yml
 cf.yml
 manifest.yaml
 manifest.yml
+*manifest.yml
 public/assets/
 dump.rdb
 mongodb.yml

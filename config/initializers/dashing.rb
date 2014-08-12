@@ -8,7 +8,7 @@ Dashing.configure do |config|
   config.redis_host     = ENV['REDIS_HOST']
   config.redis_port     = ENV['REDIS_PORT'] || 6379
   config.redis_password = nil
-  config.redis_timeout  = 3
+  config.redis_timeout  = 60
 
   # Redis namespace when pushing new data.
   config.redis_namespace = ENV['REDIS_NAMESPACE'] || 'dashing_events'
