@@ -4,8 +4,6 @@ ruby '1.9.3'
 
 gem 'redis', git: 'https://github.com/allomov/redis-rb.git', branch: 'add-pubsub'
 
-
-
 gem 'rails', '4.1.4'
 
 # gem 'sqlite3'
