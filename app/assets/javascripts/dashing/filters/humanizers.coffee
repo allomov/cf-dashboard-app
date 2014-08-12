@@ -42,7 +42,7 @@ Batman.Filters.humanize_percents = (value) ->
 
 Batman.Filters.humanize_dea_host = (value) ->
   hosts =
-    '192.168.114.21': 'Pivotal CF, Dea 1'
-    '192.168.114.21': 'Pivotal CF, Dea 1'
+    '192.168.114.21': 'Local CF, Dea 1'
+    '192.168.109.22': 'vCHS CF, Dea 1'
   if hosts[value]? then hosts[value] else value
 
